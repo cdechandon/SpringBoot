@@ -23,6 +23,16 @@ public class UserRestController {
 	@Autowired
 	private UserService userService;
 	
+	@RequestMapping(method=RequestMethod.POST, value="/sendMsgToStore")
+	public void sendInform(@RequestBody String msg) {
+		userService.sendMsg(msg);
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="/sendUserService/{busName}")
+	public void sendUserService(@PathVariable String busName) {
+		userService.sendUserService(userService,busName);
+	}
+	
 	@RequestMapping("/users")
 	private List<UserModel> getAllUsers() {
 		return userService.getAllUsers();

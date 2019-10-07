@@ -5,16 +5,25 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.annotation.JmsListener;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.cpe.springboot.card.Controller.CardModelService;
+import com.cpe.springboot.user.controller.UserService;
+
 import atelierASI2.CommonModel.Card.CardModel;
 import atelierASI2.CommonModel.Store.StoreModel;
-import com.cpe.springboot.user.controller.UserService;
 import atelierASI2.CommonModel.User.UserModel;
 
+
 @Service
+@Component
 public class StoreService {
+	
+	@Autowired
+	JmsTemplate jmsTemplate;
 	
 	@Autowired
 	CardModelService cardService;
@@ -24,6 +33,13 @@ public class StoreService {
 	StoreRepository storeRepository;
 	
 	private StoreModel store;
+	
+	@JmsListener(destination="BUS_USER-STORE",containerFactory="connectionFactory")
+	public void receiveMsg(String msgStr) {
+		System.out.println("Received  "+msgStr+" from BUS_USER-STORE ! ");
+	}
+	
+	
 	
 	public void generateNewStore(String name, int nb) {
 		StoreModel store =new StoreModel();

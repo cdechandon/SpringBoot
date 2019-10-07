@@ -1,4 +1,4 @@
-package atelierASI2.User;
+package atelierASI2.Store;
 
 import javax.jms.ConnectionFactory;
 
@@ -14,14 +14,11 @@ import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.config.JmsListenerContainerFactory;
 import org.springframework.jms.core.JmsTemplate;
 
-/**
- * Triggers the discovery of methods annotated with @JmsListener,
- * creating the message listener container under the covers
- * 
- */
+
+
 @EnableJms
 @SpringBootApplication
-public class UserApp 
+public class StoreApp 
 {
 	@Autowired
 	JmsTemplate jmsTemplate;
@@ -57,11 +54,8 @@ public class UserApp
 
 	}
 	
-	
-	
-	
     public static void main( String[] args )
     {
-    	 SpringApplication.run(UserApp.class, args);
+    	SpringApplication.run(StoreApp.class, args);
     }
 }

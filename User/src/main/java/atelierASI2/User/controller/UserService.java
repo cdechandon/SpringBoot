@@ -32,13 +32,20 @@ import lombok.extern.log4j.Log4j2;
 public class UserService {
 	
 	private final Environment environment = null;
-	
+	/**
+	 * inject the dependence JmsTemplate.
+	 * this object could be used as soon
+	 * as app server create an instance of it
+	 */
 	@Autowired
 	JmsTemplate jmsTemplate;
 	
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	UserService userService;
 	
 	/*@PostConstruct
 	public void init() {
@@ -50,8 +57,22 @@ public class UserService {
 		
 	}
 	
+	public void sendMsg(String msg) {
+		System.out.println("sending msg...");
+		jmsTemplate.convertAndSend("BUS_USER-STORE",msg);
+	}
+	
+	public void sendUserService(UserService userService,String busName) {
+		System.out.println("Sending userService to "+busName+".");
+		jmsTemplate.convertAndSend(busName,userService);
+	}
+	
 	public void sendUser(UserModel user,String busName) {
 		System.out.println("sending an user as a message...");
+		/**
+		 * send a message to the bus channel busName with as content
+		 * a "user".
+		 */
 		jmsTemplate.convertAndSend(busName,user);
 	}
 	
