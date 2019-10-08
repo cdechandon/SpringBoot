@@ -59,5 +59,14 @@ public class UserRestController {
 		return false;
 	}
 	
+	@RequestMapping(method=RequestMethod.GET,value="/authID")
+	private Integer getIdAuth(@RequestParam("login") String login, @RequestParam("pwd") String pwd) {
+		Integer currId=0;
+		if( userService.getUserByLoginPwd(login,pwd).size() > 0) {
+			currId=userService.getUserByLoginPwd(login,pwd).get(0).getId();
+		}
+		return currId;
+	}
+	
 
 }

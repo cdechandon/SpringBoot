@@ -58,5 +58,7 @@ public class UserService {
 		ulist=userRepository.findByLoginAndPwd(login,pwd);
 		return ulist;
 	}
+	
+	
 
 }

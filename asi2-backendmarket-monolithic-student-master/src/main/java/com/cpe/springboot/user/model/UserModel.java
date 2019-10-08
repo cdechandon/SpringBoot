@@ -30,7 +30,10 @@ public class UserModel implements Serializable {
 	private String lastName;
 	private String surName;
 	private String email;
+	private Integer money;
 
+
+	
 
 	@OneToMany(cascade = CascadeType.ALL,
 			mappedBy = "user")
@@ -135,6 +138,13 @@ public class UserModel implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public Integer getMoney() {
+		return money;
+	}
+
+	public void setMoney(Integer money) {
+		this.money = money;
 	}
 
 }
