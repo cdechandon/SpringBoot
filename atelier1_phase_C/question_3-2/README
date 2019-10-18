@@ -1,0 +1,6 @@
+Créer une application indépendante permettant de tester la mise à jour d’un utilisateur par
+Bus de Communication
+
+L'application indépendante est UserUpdate
+
+L'applcation Destinataire reçoit l'id et les infos de l'utilisateur à mettre à jour via Activemq
